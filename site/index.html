@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Review Analyzer</title>
+  <style>
+    :root {font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#1f2937;background:#f3f6fb}
+    * {box-sizing:border-box}
+    body {margin:0;padding:24px 14px}
+    main {max-width:720px;margin:40px auto;background:white;padding:32px;border-radius:18px;box-shadow:0 15px 50px #16314a13}
+    .eyebrow {text-transform:uppercase;letter-spacing:.15em;color:#2563eb;font-weight:700;font-size:12px}
+    h1 {margin:12px 0;font-size:clamp(26px,5vw,36px)}
+    p {color:#64748b;line-height:1.6}
+    label {display:block;margin:26px 0 8px;font-weight:600}
+    textarea {width:100%;min-height:130px;padding:14px;border:1px solid #cbd5e1;border-radius:10px;resize:vertical;font:inherit;line-height:1.5}
+    textarea:focus {outline:2px solid #93c5fd;outline-offset:2px}
+    button {background:#2563eb;border:0;border-radius:10px;color:white;font:inherit;font-weight:650;padding:12px 20px;cursor:pointer;margin-top:12px}
+    button:disabled{cursor:not-allowed;opacity:.55}
+    #result {margin-top:24px;padding:22px;border:1px solid #e2e8f0;border-radius:14px;background:#f8fafc}
+    .status {color:#475569;font-size:14px;min-height:22px}
+    .stat {display:flex;justify-content:space-between;align-items:center;margin:12px 0 6px}
+    .stat strong {font-size:15px}
+    .bar {height:13px;background:#e2e8f0;overflow:hidden;border-radius:20px}
+    .fill {height:100%;transition:width .2s}
+    .positive {background:#16a34a}
+    .negative {background:#dc2626}
+    .note {font-size:13px;margin-top:18px}
+    footer {text-align:center;margin:24px auto;color:#64748b;font-size:13px}
+    @media (max-width:540px){main{padding:22px;margin:10px auto}}
+  </style>
+</head>
+<body>
+  <main>
+    <h1>AI Review Analyzer</h1>
+    <label for="review">Введіть відгук</label>
+    <textarea id="review" placeholder="Наприклад: Дуже якісний товар, рекомендую!">Дуже хороший товар, чудова якість!</textarea>
+    <button type="button" id="analyze" disabled>Проаналізувати</button>
+    <p class="status" id="status" role="status">Завантаження моделі...</p>
+    <section id="result" hidden aria-live="polite">
+      <h2 id="decision">Результат</h2>
+      <div class="stat"><strong>Позитивний</strong><span id="positive-text">—</span></div>
+      <div class="bar"><div class="fill positive" id="positive-fill" style="width:0%"></div></div>
+      <div class="stat"><strong>Негативний</strong><span id="negative-text">—</span></div>
+      <div class="bar"><div class="fill negative" id="negative-fill" style="width:0%"></div></div>
+      <p class="note">Оцінки відображають відносні ймовірності моделі, а не гарантовану достовірність. Модель навчена на невеликому демонстраційному наборі прикладів.</p>
+    </section>
+  </main>
+  <script src="app.js" defer></script>
+</body>
+</html>
